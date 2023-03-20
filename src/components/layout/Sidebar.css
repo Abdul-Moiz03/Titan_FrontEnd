@@ -1,0 +1,136 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar {
+    background: #fff;
+
+    /* color: #fff; */
+    height: 100%;
+    width: 256px;
+    transition: all 0.5s;
+    box-shadow: 0.5px 0.05px 5px #C2CFE0;
+    ;
+    ;
+
+}
+
+.top_section {
+    display: flex;
+    align-items: center;
+    padding: 20px 15px;
+    padding-bottom: 0px;
+
+}
+
+
+.logosize {
+    width: 111px;
+    height: 39px;
+    /* margin-left: 22px; */
+}
+
+.logoiconsize {
+    width: 32px;
+    height: 32px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+.arrow_sidebar {
+    display: flex;
+    color: #C2CFE0;
+    opacity: 0.5;
+}
+
+.arrow_sidebar:hover {
+    cursor: pointer;
+}
+
+.arrowbutton {
+    color: #C2CFE0;
+    font-size: large;
+}
+
+.admin_bar {
+    color: #c2d2e7;
+    margin-left: 20px;
+
+}
+
+.bottom_sidebar {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.link {
+    display: flex;
+    color: #334D6E;
+    padding: 12px 20px;
+    padding-top: 14px;
+    padding-bottom: 9px;
+    margin: 1px;
+    gap: 25px;
+    transition: all 0.5s;
+    font-style: normal;
+    font-weight: 600;
+    text-decoration: none;
+
+    /* line-height: 19px; */
+}
+
+.link:hover {
+    background: #FBB515;
+    /* color: ; */
+    transition: all 0.5s;
+    border-radius: 5px;
+}
+
+.active {
+    background: #FBB515;
+    /* color: #000; */
+    border-radius: 5px;
+}
+
+.active_menu {
+    /* background: #FBB515; */
+    /* color: #000; */
+    border-radius: 5px;
+}
+
+.icon,
+.link_text {
+    font-size: 15px;
+}
+
+.pages {
+    left: 256px;
+    height: 100%;
+    width: 100%;
+    transition: all 0.25s ease-in;
+    box-shadow: none;
+}
+
+.adminInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.avatar {
+    margin-right: 8px;
+}
+
+.right_navbar {
+    display: flex;
+    flex-direction: row;
+    padding-left: 650px;
+
+}

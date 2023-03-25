@@ -192,7 +192,7 @@ const Sidebar = ({ children }) => {
                 alignItems="center"
                 justifyContent="space-between"
               >
-                <main>{children}</main>
+                {/* <main>{children}</main> */}
 
                 <div className="right_navbar">
                   <Typography
@@ -240,6 +240,7 @@ const Sidebar = ({ children }) => {
               </Stack>
             }
           />
+          {children}
         </Stack>
       </div>
     </>

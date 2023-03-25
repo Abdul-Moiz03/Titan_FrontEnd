@@ -10,13 +10,17 @@ import Report from "./components/pages/Report";
 
 import Inventory from "./components/pages/Inventory";
 
-import Admin from "./components/pages/Admin";
+import Admin from "./components/pages/AdminScreens/Admin";
 
 import Settings from "./components/pages/Settings";
 import { WrokRequest } from "./components/pages/Maintenance/WrokRequest";
 import WorkMethod from "./components/pages/Maintenance/WorkMethod";
 import WorkProcedure from "./components/pages/Maintenance/WorkProcedure";
 import WorkOrder from "./components/pages/Maintenance/WorkOrder.jsx";
+import Users from "./components/pages/AdminScreens/Users";
+import Roles from "./components/pages/AdminScreens/Roles";
+import Permission from "./components/pages/AdminScreens/Permission";
+import Profile from "./components/pages/AdminScreens/Profile";
 
 const App = () => {
   return (
@@ -41,6 +45,10 @@ const App = () => {
           <Route path="/report" element={<Report />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/AdminScreens/user" element={<Users />} />
+          <Route path="/AdminScreens/role" element={<Roles />} />
+          <Route path="/AdminScreens/permissions" element={<Permission />} />
+          <Route path="/AdminScreens/profiles" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
         {/* </Navbar> */}

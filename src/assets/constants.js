@@ -42,6 +42,17 @@ export const categories = [
   },
   { id: 6, name: "Report", icon: <PieChartIcon />, path: "/report" },
   { id: 7, name: "Inventory", icon: <ViewCarouselIcon />, path: "/inventory" },
-  { id: 8, name: "Admin", icon: <SecurityIcon />, path: "/admin" },
+  {
+    id: 8,
+    name: "Admin",
+    icon: <SecurityIcon />,
+    subCategories: [
+      { id: 1, title: "User", pathh: "/AdminScreens/user" },
+      { id: 2, title: "Role", pathh: "/AdminScreens/role" },
+      { id: 3, title: "Permissions", pathh: "/AdminScreens/permissions" },
+      { id: 2, title: "Profiles", pathh: "/AdminScreens/Profiles" },
+    ],
+    path: "/admin",
+  },
   { id: 9, name: "Settings", icon: <SettingsIcon />, path: "/settings" },
 ];

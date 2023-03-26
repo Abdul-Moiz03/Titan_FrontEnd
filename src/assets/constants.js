@@ -24,7 +24,7 @@ export const categories = [
       { id: 1, title: "Work Request", pathh: "/maintenance/workrequest" },
       { id: 2, title: "Work Order", pathh: "/maintenance/workorder" },
       { id: 3, title: "Work Procedure", pathh: "/maintenance/workprocedure" },
-      { id: 2, title: "Work Methods", pathh: "/maintenance/workmethod" },
+      { id: 4, title: "Work Methods", pathh: "/maintenance/workmethod" },
     ],
   },
 
@@ -41,7 +41,28 @@ export const categories = [
     path: "/preventive",
   },
   { id: 6, name: "Report", icon: <PieChartIcon />, path: "/report" },
-  { id: 7, name: "Inventory", icon: <ViewCarouselIcon />, path: "/inventory" },
+  {
+    id: 7,
+    name: "Inventory",
+    icon: <ViewCarouselIcon />,
+    path: "/inventory",
+    subCategories: [
+      { id: 1, title: "Equipment", pathh: "/Inventory/Equipment" },
+      { id: 2, title: "UOM", pathh: "/Inventory/uom" },
+      { id: 3, title: "Brand", pathh: "/Inventory/brand" },
+      {
+        id: 4,
+        title: "Purchase Requisition",
+        pathh: "/Inventory/purchaseRequisition",
+      },
+      {
+        id: 5,
+        title: "Issuance Requisition",
+        pathh: "/Inventory/issuanceRequisition",
+      },
+      { id: 6, title: "Issuance Detail", pathh: "/Inventory/issuanceDetail" },
+    ],
+  },
   {
     id: 8,
     name: "Admin",
@@ -50,7 +71,7 @@ export const categories = [
       { id: 1, title: "User", pathh: "/AdminScreens/user" },
       { id: 2, title: "Role", pathh: "/AdminScreens/role" },
       { id: 3, title: "Permissions", pathh: "/AdminScreens/permissions" },
-      { id: 2, title: "Profiles", pathh: "/AdminScreens/Profiles" },
+      { id: 4, title: "Profiles", pathh: "/AdminScreens/Profiles" },
     ],
     path: "/admin",
   },

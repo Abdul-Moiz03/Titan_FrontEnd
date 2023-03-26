@@ -28,16 +28,19 @@ const Sidebar = ({ children }) => {
   /**code for sub opening sub catagories on click */
   const [openCategories, setOpenCategories] = useState([]);
   const [cateClick, setcateClick] = useState(false);
-  console.log("cateclick" + cateClick);
+
   const handleCategoryClick = () => {
     setcateClick(true);
   };
   console.log(openCategories + "fasdf");
+
+  const [hasChild, setHasChild] = useState(false);
   const toggleCategory = (categoryId) => {
+    console.log(openCategories);
     if (openCategories.includes(categoryId)) {
       setOpenCategories(openCategories.filter((id) => id !== categoryId));
     } else {
-      setOpenCategories([...openCategories, categoryId]);
+      setOpenCategories([categoryId]);
     }
   };
   // const [sideBarActive, setSideBarActive] = useState(true);
@@ -82,32 +85,42 @@ const Sidebar = ({ children }) => {
                   className="link_text"
                   onClick={() => {
                     toggleCategory(item.id);
+                    if (item?.subCategories && item?.subCategories.length > 0) {
+                      setHasChild(true);
+                    } else {
+                      setHasChild(false);
+                    }
                   }}
                 >
                   {item.name}
                 </div>
               </NavLink>
-
-              {item.subCategories && openCategories.includes(item.id) && (
-                <ul
-                  style={{
-                    display: isOpen ? "block" : "none",
-                  }}
-                >
-                  {item.subCategories.map((subCategory) => (
-                    <li key={subCategory.id} style={{ listStyleType: "none" }}>
-                      <NavLink
+              {console.log(hasChild)}
+              {hasChild &&
+                item.subCategories &&
+                openCategories.includes(item.id) && (
+                  <ul
+                    style={{
+                      display: isOpen ? "block" : "none",
+                    }}
+                  >
+                    {item.subCategories.map((subCategory) => (
+                      <li
                         key={subCategory.id}
-                        to={subCategory.pathh}
-                        activeClassName="active_menu"
-                        className="link"
+                        style={{ listStyleType: "none" }}
                       >
-                        <div className="link_text">{subCategory.title}</div>
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
-              )}
+                        <NavLink
+                          key={subCategory.id}
+                          to={subCategory.pathh}
+                          activeClassName="active_menu"
+                          className="link"
+                        >
+                          <div className="link_text">{subCategory.title}</div>
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                )}
             </>
           ))}
 

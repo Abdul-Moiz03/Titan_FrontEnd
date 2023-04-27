@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
-
+import CreateEquipModal from "./CreateEquipModal";
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
   {
@@ -158,6 +158,8 @@ const rows = [
 export default function Equipment() {
   return (
     <Box sx={{ px: 2, height: 600, width: "auto" }}>
+      <CreateEquipModal />
+
       <DataGrid
         rows={rows}
         columns={columns}

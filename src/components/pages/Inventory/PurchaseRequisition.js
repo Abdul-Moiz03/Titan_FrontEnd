@@ -4,7 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Button } from "@mui/material";
-import CreateUserModal from "../AdminScreens/CreateUserModal";
+import CreatePurchaseRequisitionModal from "./CreatePurchaseRequisitionModal";
 
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
@@ -138,8 +138,8 @@ const rows = [
 export default function PurchaseRequisition() {
   return (
     <>
-      <CreateUserModal />
       <Box sx={{ px: 2, height: 600, width: "auto" }}>
+        <CreatePurchaseRequisitionModal />
         <DataGrid
           rows={rows}
           columns={columns}

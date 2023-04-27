@@ -4,37 +4,38 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Button } from "@mui/material";
-// import CreateUserModal from "../AdminScreens/CreateUserModal";
+// import CreateIssuanceRequisitionModal from "./CreateIssuanceRequisitionModal";
+import EditIcon from "@mui/icons-material/Edit";
 
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
   {
-    field: "requestpersonname",
-    headerName: "Request Person Name(ID)",
-    width: 450,
+    field: "assetmodel",
+    headerName: "Asset Model",
+    width: 180,
     type: "string",
     headerAlign: "center",
     align: "center",
   },
   {
-    field: "noofequipments",
-    headerName: "No of Equipments",
+    field: "assetname",
+    headerName: "Asset Name",
     type: "number",
     width: 150,
     headerAlign: "center",
     align: "center",
   },
   {
-    field: "workorderid",
-    headerName: "Work Order ID",
+    field: "scheduledworkorder",
+    headerName: "Scheduled Work Order",
     type: "number",
-    width: 110,
+    width: 180,
     headerAlign: "center",
     align: "center",
   },
   {
-    field: "status",
-    headerName: "Status",
+    field: "inspections",
+    headerName: "Inspections",
     // description: 'This column has a value getter and is not sortable.',
     // sortable: false,
 
@@ -46,9 +47,19 @@ const columns = [
     //   `${params.row.firstName || ''} ${params.row.lastName || ''}`,
   },
   {
+    field: "meterreadings",
+    headerName: "Meter Readings",
+    type: "number",
+    width: 150,
+    headerAlign: "center",
+    align: "center",
+  },
+  {
     field: "actions",
     headerName: "Actions",
-    width: 250,
+    headerAlign: "center",
+    align: "center",
+    width: 180,
     renderCell: (params) => <Viewbtn id={params.row.id} />,
   },
 ];
@@ -79,6 +90,13 @@ const Viewbtn = (props) => {
           }}
         />
       </Button>
+      <Button sx={{ color: "black" }}>
+        <EditIcon
+          style={{ color: HoveredIcon === "edit" ? "#FBB515" : "inherit" }}
+          onMouseEnter={() => handleIconMouseEnter("edit")}
+          onMouseLeave={handleIconMouseLeave}
+        />
+      </Button>
     </div>
   );
 };
@@ -86,60 +104,68 @@ const Viewbtn = (props) => {
 const rows = [
   {
     id: 1,
-    requestpersonname: "Snow",
-    noofequipments: 35,
-    workorderid: 35,
-    status: 35,
+    assetmodel: "Snow",
+    assetname: 35,
+    scheduledworkorder: 35,
+    inspections: 35,
+    meterreadings: 50,
   },
   {
     id: 2,
-    requestpersonname: "Lannister",
-    noofequipments: "Cersei",
-    workorderid: 42,
-    status: 35,
+    assetmodel: "Lannister",
+    assetname: "Cersei",
+    scheduledworkorder: 42,
+    inspections: 35,
+    meterreadings: 60,
   },
   {
     id: 3,
-    requestpersonname: "Lannister",
-    noofequipments: "Jaime",
-    workorderid: 45,
-    status: 35,
+    assetmodel: "Lannister",
+    assetname: "Jaime",
+    scheduledworkorder: 45,
+    inspections: 35,
+    meterreadings: 70,
   },
   {
     id: 4,
-    requestpersonname: "Stark",
-    noofequipments: "Arya",
-    workorderid: 16,
-    status: 35,
+    assetmodel: "Stark",
+    assetname: "Arya",
+    scheduledworkorder: 16,
+    inspections: 35,
+    meterreadings: 80,
   },
   {
     id: 5,
-    requestpersonname: "Targaryen",
-    noofequipments: "Daenerys",
-    workorderid: null,
-    status: 35,
+    assetmodel: "Targaryen",
+    assetname: "Daenerys",
+    scheduledworkorder: null,
+    inspections: 35,
+    meterreadings: 90,
   },
   {
     id: 6,
-    requestpersonname: "Melisandre",
-    noofequipments: null,
-    workorderid: 150,
-    status: 35,
+    assetmodel: "Melisandre",
+    assetname: null,
+    scheduledworkorder: 150,
+    inspections: 35,
+    meterreadings: 100,
   },
   {
     id: 7,
-    requestpersonname: "Clifford",
-    noofequipments: "Ferrara",
-    workorderid: 44,
-    status: 35,
+    assetmodel: "Clifford",
+    assetname: "Ferrara",
+    scheduledworkorder: 44,
+    inspections: 35,
+    meterreadings: 110,
   },
 ];
 
-export default function IssuanceDetail() {
+export default function Preventive_Maintenance() {
   return (
     <>
-      {/* <CreateUserModal /> */}
       <Box sx={{ px: 2, height: 600, width: "auto" }}>
+        {/* <CreateIssuanceRequisitionModal /> */}
+
         <DataGrid
           rows={rows}
           columns={columns}

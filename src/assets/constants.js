@@ -34,12 +34,31 @@ export const categories = [
     icon: <WebAssetIcon />,
     path: "/asset",
   },
+
   {
     id: 5,
     name: "Preventive",
     icon: <ManageHistoryIcon />,
+    subCategories: [
+      {
+        id: 1,
+        title: "Maintenance Model",
+        pathh: "/Preventive/Maintenance_Model",
+      },
+      {
+        id: 2,
+        title: "Preventive Maintenance",
+        pathh: "/Preventive/Preventive_Maintenance",
+      },
+      {
+        id: 3,
+        title: "Batch Inspection Entries",
+        pathh: "/Preventive/Batch_Inspection_Entries",
+      },
+    ],
     path: "/preventive",
   },
+
   { id: 6, name: "Report", icon: <PieChartIcon />, path: "/report" },
   {
     id: 7,

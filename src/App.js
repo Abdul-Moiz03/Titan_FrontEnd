@@ -3,7 +3,7 @@ import Sidebar from "./components/layout/Sidebar";
 import Home from "./components/pages/Home";
 import Maintenance from "./components/pages/Maintenance/Maintenance";
 import Asset from "./components/pages/Asset";
-import Preventive from "./components/pages/Preventive";
+import Preventive from "./components/pages/Preventive/Preventive";
 import Report from "./components/pages/Report";
 import Inventory from "./components/pages/Inventory/Inventory";
 import Admin from "./components/pages/AdminScreens/Admin";
@@ -18,7 +18,9 @@ import Brand from "./components/pages/Inventory/Brand";
 import PurchaseRequisition from "./components/pages/Inventory/PurchaseRequisition";
 import IssuanceRequisition from "./components/pages/Inventory/IssuanceRequisition";
 import IssuanceDetail from "./components/pages/Inventory/IssuanceDetail";
-
+import Preventive_Maintenance from "./components/pages/Preventive/Preventive_Maintenance";
+import Batch_Inspection_Entries from "./components/pages/Preventive/Batch_Inspection_Entries";
+import Maintenance_Model from "./components/pages/Preventive/Maintenance_Model";
 const App = () => {
   return (
     <BrowserRouter>
@@ -38,6 +40,19 @@ const App = () => {
 
           <Route path="/asset" element={<Asset />} />
           <Route path="/preventive" element={<Preventive />} />
+          <Route
+            path="/Preventive/Maintenance_Model"
+            element={<Maintenance_Model />}
+          />
+          <Route
+            path="/Preventive/Preventive_Maintenance"
+            element={<Preventive_Maintenance />}
+          />
+          <Route
+            path="/Preventive/Batch_Inspection_Entries"
+            element={<Batch_Inspection_Entries />}
+          />
+
           <Route path="/report" element={<Report />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/Inventory/Equipment" element={<Equipment />} />

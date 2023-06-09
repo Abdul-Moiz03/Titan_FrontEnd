@@ -33,6 +33,10 @@ export const categories = [
     name: "Asset",
     icon: <WebAssetIcon />,
     path: "/asset",
+    subCategories: [
+      { id: 1, title: "Asset Model", pathh: "/Asset/Asset_Model" },
+      { id: 2, title: "Asset", pathh: "/Asset/Assets" },
+    ]
   },
 
   {
@@ -87,12 +91,26 @@ export const categories = [
     name: "Admin",
     icon: <SecurityIcon />,
     subCategories: [
-      { id: 1, title: "User", pathh: "/AdminScreens/user" },
-      { id: 2, title: "Role", pathh: "/AdminScreens/role" },
-      { id: 3, title: "Permissions", pathh: "/AdminScreens/permissions" },
-      { id: 4, title: "Profiles", pathh: "/AdminScreens/Profiles" },
+      { id: 1, title: "User", pathh: "/AdminScreens/Users" },
+      { id: 2, title: "Role", pathh: "/AdminScreens/Roles" },
+      { id: 3, title: "Permission", pathh: "/AdminScreens/Permission" },
+      { id: 4, title: "Profile", pathh: "/AdminScreens/Profile" },
     ],
     path: "/admin",
   },
-  { id: 9, name: "Settings", icon: <SettingsIcon />, path: "/settings" },
+  { id: 9, name: "Settings", icon: <SettingsIcon />,
+      subCategories: [
+        { id: 1, title: "Department", pathh: "/Settings/Dept_Setting" },
+        { id: 2, title: "Employee", pathh: "/Settings/Emp_Setting" },
+        { id: 3, title: "Facility", pathh: "/Settings/Facility_Setting" },
+        { id: 4, title: "Floor", pathh: "/Settings/Floor_Setting" },
+        { id: 5, title: "Functional Location", pathh: "/Settings/Func_Loc_Setting" },
+        { id: 5, title: "Position", pathh: "/Settings/Position_Setting" },
+        { id: 6, title: "Tool", pathh: "/Settings/Tool_Setting" },
+        { id: 7, title: "Method Type", pathh: "/Settings/Method_Setting" },
+        { id: 8, title: "Maintenance Type", pathh: "/Settings/Maintenance_Setting" },
+        { id: 9, title: "Priority", pathh: "/Settings/Priority_Setting" },
+        { id: 10, title: "Type of Problem", pathh: "/Settings/Problem_Setting" },
+      ],
+    path: "/settings" },
 ];

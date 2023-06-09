@@ -7,7 +7,22 @@ import Preventive from "./components/pages/Preventive/Preventive";
 import Report from "./components/pages/Report";
 import Inventory from "./components/pages/Inventory/Inventory";
 import Admin from "./components/pages/AdminScreens/Admin";
-import Settings from "./components/pages/Settings";
+import Users from "./components/pages/AdminScreens/Users";
+import Roles from "./components/pages/AdminScreens/Roles";
+import Permission from "./components/pages/AdminScreens/Permission";
+import Profile from "./components/pages/AdminScreens/Profile";
+import Settings from "./components/pages/Settings/Settings";
+import Dept_Setting from "./components/pages/Settings/Dept_Setting";
+import Emp_Setting from "./components/pages/Settings/Emp_Setting";
+import Facility_Setting from "./components/pages/Settings/Facility_Setting";
+import Floor_Setting from "./components/pages/Settings/Floor_Setting";
+import Func_Loc_Setting from "./components/pages/Settings/Func_Loc_Setting";
+import Position_Setting from "./components/pages/Settings/Position_Setting";
+import Tool_Setting from "./components/pages/Settings/Tool_Setting";
+import Method_Setting from "./components/pages/Settings/Method_Setting";
+import Maintenance_Setting from "./components/pages/Settings/Maintenance_Setting";
+import Priority_Setting from "./components/pages/Settings/Priority_Setting";
+import Problem_Setting from "./components/pages/Settings/Problem_Setting";
 import WorkRequest from "./components/pages/Maintenance/WorkRequest";
 import WorkMethod from "./components/pages/Maintenance/WorkMethod";
 import WorkProcedure from "./components/pages/Maintenance/WorkProcedure";
@@ -71,8 +86,24 @@ const App = () => {
             element={<IssuanceDetail />}
           />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/AdminScreens/Users" element={<Users />} />
+          <Route path="/AdminScreens/Roles" element={<Roles />} />
+          <Route path="/AdminScreens/Permission" element={<Permission />} />
+          <Route path="/AdminScreens/Profile" element={<Profile />} />
 
           <Route path="/settings" element={<Settings />} />
+          <Route path="/Settings/Dept_Setting" element={<Dept_Setting />} />
+          <Route path="/Settings/Emp_Setting" element={<Emp_Setting />} />
+          <Route path="/Settings/Facility_Setting" element={<Facility_Setting />} />
+          <Route path="/Settings/Floor_Setting" element={<Floor_Setting />} />
+          <Route path="/Settings/Func_Loc_Setting" element={<Func_Loc_Setting />} />
+          <Route path="/Settings/Position_Setting" element={<Position_Setting />} />
+          <Route path="/Settings/Tool_Setting" element={<Tool_Setting />} />
+          <Route path="/Settings/Method_Setting" element={<Method_Setting />} />
+          <Route path="/Settings/Maintenance_Setting" element={<Maintenance_Setting />} />
+          <Route path="/Settings/Priority_Setting" element={<Priority_Setting />} />
+          <Route path="/Settings/Problem_Setting" element={<Problem_Setting />} />
+            
         </Routes>
       </Sidebar>
     </BrowserRouter>

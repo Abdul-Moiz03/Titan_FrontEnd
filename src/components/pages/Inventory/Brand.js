@@ -11,7 +11,7 @@ const columns = [
     width: 800,
   },
   {
-    field: "actions",
+    field: "active",
     headerName: "Actions",
     width: 250,
     renderCell: (params) => <Switchbtn id={params.row.id} />,

@@ -8,7 +8,7 @@ import Report from "./components/pages/Report";
 import Inventory from "./components/pages/Inventory/Inventory";
 import Admin from "./components/pages/AdminScreens/Admin";
 import Settings from "./components/pages/Settings";
-import { WrokRequest } from "./components/pages/Maintenance/WrokRequest";
+import WorkRequest from "./components/pages/Maintenance/WorkRequest";
 import WorkMethod from "./components/pages/Maintenance/WorkMethod";
 import WorkProcedure from "./components/pages/Maintenance/WorkProcedure";
 import WorkOrder from "./components/pages/Maintenance/WorkOrder.jsx";
@@ -28,7 +28,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/maintenance" element={<Maintenance />} />
-          <Route path="/maintenance/workrequest" element={<WrokRequest />} />
+          <Route path="/maintenance/workrequest" element={<WorkRequest />} />
           <Route path="/maintenance/workorder" element={<WorkOrder />} />
 
           <Route

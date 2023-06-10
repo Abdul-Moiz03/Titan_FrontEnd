@@ -2,7 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/layout/Sidebar";
 import Home from "./components/pages/Home";
 import Maintenance from "./components/pages/Maintenance/Maintenance";
-import Asset from "./components/pages/Asset";
+import Asset from "./components/pages/Asset/Asset";
+import Asset_Model from "./components/pages/Asset/Asset_Model";
+import Assets from "./components/pages/Asset/Assets";
 import Preventive from "./components/pages/Preventive/Preventive";
 import Report from "./components/pages/Report";
 import Inventory from "./components/pages/Inventory/Inventory";
@@ -103,6 +105,10 @@ const App = () => {
           <Route path="/Settings/Maintenance_Setting" element={<Maintenance_Setting />} />
           <Route path="/Settings/Priority_Setting" element={<Priority_Setting />} />
           <Route path="/Settings/Problem_Setting" element={<Problem_Setting />} />
+            
+          <Route path="/asset" element={<Asset />} />
+          <Route path="/Asset/Asset_Model" element={<Asset_Model />} />
+          <Route path="/Asset/Assets" element={<Assets />} />
             
         </Routes>
       </Sidebar>

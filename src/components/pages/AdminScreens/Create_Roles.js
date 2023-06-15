@@ -133,7 +133,7 @@ const Create_Roles = () => {
   //     handlePermissionSubmit(values, { setSubmitting, resetForm });
   //   }
   // };
-  
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -142,9 +142,10 @@ const Create_Roles = () => {
   };
 
   const handlePermDelete = (id) => {
-    setPermissionRows((prevFormData) => prevFormData.filter((row) => row.id !== id));
+    setPermissionRows((prevFormData) =>
+      prevFormData.filter((row) => row.id !== id)
+    );
   };
-
 
   const handleOpen = () => {
     setOpen(true);
@@ -190,7 +191,6 @@ const Create_Roles = () => {
                 isSubmitting,
               }) => (
                 <Form onSubmit={handleSubmit}>
-
                   <FormControl
                     variant="outlined"
                     margin="dense"
@@ -224,149 +224,167 @@ const Create_Roles = () => {
 
                   <br />
 
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height:'12%'}}>
-                    <Typography id="transition-modal-title" variant="h6"  sx={{ textAlign: 'left' }}>
-                        Department
-                    </Typography>
-                  <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', height:'5%' }}>
-                  
-                  <FormControl
-                    variant="outlined"
-                    margin="dense"
-                    size="small"
-                    style={{ width: "45ch" }}
-                    error={
-                      touched.Department &&
-                      Boolean(errors.Department)
-                    }
-                  >
-                    <InputLabel>Department</InputLabel>
-                    <Field
-                      name="Department"
-                      label="Department"
-                      as={Select}
-                      labelId="Department-label"
-                      id="Department"
-                      value={values.Department}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      error={
-                        touched.Department &&
-                        Boolean(errors.Department)
-                      }
-                      color="warning"
-                      InputProps={{
-                        style: { height: "40px", fontSize: "15px" },
-                      }}
-                    >
-                      {DepartmentData.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </Field>
-                    {touched.Department && errors.Department && (
-                      <div className="error">{errors.Department}</div>
-                    )}
-                  </FormControl>
-
-                  &nbsp;
-                  &nbsp;
-
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    fullWidth={false}
-                    variant="contained"
+                  <Box
                     sx={{
-                      mt: 2,
-                      mb: 2,
-                      backgroundColor: "#FBB515",
-                      color: "black",
-                      "&:hover": {
-                        backgroundColor: "#FABE4B",
-                      },
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      height: "12%",
                     }}
                   >
-                    &nbsp; &nbsp; Add &nbsp; &nbsp;
-                  </Button>
-
-                  </Box>
-                  </Box>
-
-                  <Table rows={deptRowData} columns={deptColumns}  height={185}/>
-
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height:'12%'}}>
-                    <Typography id="transition-modal-title" variant="h6"  sx={{ textAlign: 'left' }}>
-                        Permissions
+                    <Typography
+                      id="transition-modal-title"
+                      variant="h6"
+                      sx={{ textAlign: "left" }}
+                    >
+                      Department
                     </Typography>
-                  <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', height:'5%' }}>
-                  
-                  <FormControl
-                    variant="outlined"
-                    margin="dense"
-                    size="small"
-                    style={{ width: "45ch" }}
-                    error={
-                      touched.Permission &&
-                      Boolean(errors.Permission)
-                    }
-                  >
-                    <InputLabel>Permission</InputLabel>
-                    <Field
-                      name="Permission"
-                      label="Permission"
-                      as={Select}
-                      labelId="Permission-label"
-                      id="Permission"
-                      value={values.Permission}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      error={
-                        touched.Permission &&
-                        Boolean(errors.Permission)
-                      }
-                      color="warning"
-                      InputProps={{
-                        style: { height: "40px", fontSize: "15px" },
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        alignItems: "center",
+                        height: "5%",
                       }}
                     >
-                      {PermissionData.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </Field>
-                    {touched.Permission && errors.Permission && (
-                      <div className="error">{errors.Permission}</div>
-                    )}
-                  </FormControl>
+                      <FormControl
+                        variant="outlined"
+                        margin="dense"
+                        size="small"
+                        style={{ width: "45ch" }}
+                        error={touched.Department && Boolean(errors.Department)}
+                      >
+                        <InputLabel>Department</InputLabel>
+                        <Field
+                          name="Department"
+                          label="Department"
+                          as={Select}
+                          labelId="Department-label"
+                          id="Department"
+                          value={values.Department}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          error={
+                            touched.Department && Boolean(errors.Department)
+                          }
+                          color="warning"
+                          InputProps={{
+                            style: { height: "40px", fontSize: "15px" },
+                          }}
+                        >
+                          {DepartmentData.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                              {option.label}
+                            </MenuItem>
+                          ))}
+                        </Field>
+                        {touched.Department && errors.Department && (
+                          <div className="error">{errors.Department}</div>
+                        )}
+                      </FormControl>
+                      &nbsp; &nbsp;
+                      <Button
+                        type="submit"
+                        disabled={isSubmitting}
+                        fullWidth={false}
+                        variant="contained"
+                        sx={{
+                          mt: 2,
+                          mb: 2,
+                          backgroundColor: "#FBB515",
+                          color: "black",
+                          "&:hover": {
+                            backgroundColor: "#FABE4B",
+                          },
+                        }}
+                      >
+                        &nbsp; &nbsp; Add &nbsp; &nbsp;
+                      </Button>
+                    </Box>
+                  </Box>
 
-                  &nbsp;
-                  &nbsp;
+                  {/* <Table rows={deptRowData} columns={deptColumns}  height={185}/> */}
 
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    fullWidth={false}
-                    variant="contained"
+                  <Box
                     sx={{
-                      mt: 2,
-                      mb: 2,
-                      backgroundColor: "#FBB515",
-                      color: "black",
-                      "&:hover": {
-                        backgroundColor: "#FABE4B",
-                      },
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      height: "12%",
                     }}
                   >
-                    &nbsp; &nbsp; Add &nbsp; &nbsp;
-                  </Button>
-                  
-                  </Box>
+                    <Typography
+                      id="transition-modal-title"
+                      variant="h6"
+                      sx={{ textAlign: "left" }}
+                    >
+                      Permissions
+                    </Typography>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        alignItems: "center",
+                        height: "5%",
+                      }}
+                    >
+                      <FormControl
+                        variant="outlined"
+                        margin="dense"
+                        size="small"
+                        style={{ width: "45ch" }}
+                        error={touched.Permission && Boolean(errors.Permission)}
+                      >
+                        <InputLabel>Permission</InputLabel>
+                        <Field
+                          name="Permission"
+                          label="Permission"
+                          as={Select}
+                          labelId="Permission-label"
+                          id="Permission"
+                          value={values.Permission}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          error={
+                            touched.Permission && Boolean(errors.Permission)
+                          }
+                          color="warning"
+                          InputProps={{
+                            style: { height: "40px", fontSize: "15px" },
+                          }}
+                        >
+                          {PermissionData.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                              {option.label}
+                            </MenuItem>
+                          ))}
+                        </Field>
+                        {touched.Permission && errors.Permission && (
+                          <div className="error">{errors.Permission}</div>
+                        )}
+                      </FormControl>
+                      &nbsp; &nbsp;
+                      <Button
+                        type="submit"
+                        disabled={isSubmitting}
+                        fullWidth={false}
+                        variant="contained"
+                        sx={{
+                          mt: 2,
+                          mb: 2,
+                          backgroundColor: "#FBB515",
+                          color: "black",
+                          "&:hover": {
+                            backgroundColor: "#FABE4B",
+                          },
+                        }}
+                      >
+                        &nbsp; &nbsp; Add &nbsp; &nbsp;
+                      </Button>
+                    </Box>
                   </Box>
 
-                  <Table rows={permRowData} columns={permColumns}  height={185}/>
+                  {/* <Table rows={permRowData} columns={permColumns}  height={185}/> */}
 
                   <Box
                     sx={{

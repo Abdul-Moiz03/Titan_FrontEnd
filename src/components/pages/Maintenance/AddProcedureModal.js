@@ -41,6 +41,8 @@ const initialValues = {
   SubItemPosition: "",
   SelectAsset: "",
   MethodName: "",
+  CheckPoint: "",
+  Description: "",
 };
 const validationSchema = Yup.object().shape({
   ProcedureName: Yup.string().required("Group Name is required"),
@@ -48,6 +50,8 @@ const validationSchema = Yup.object().shape({
   SubItemPosition: Yup.string().required("Text is required"),
   SelectAsset: Yup.string().required("Group Name is required"),
   MethodName: Yup.string().required("Group Name is required"),
+  CheckPoint: Yup.string().required("Group Name is required"),
+  Description: Yup.string().required("Group Name is required"),
 });
 
 const ProcedureNameData = [
@@ -71,6 +75,11 @@ const MethodNameData = [
   { value: "optionB", label: "Option B" },
   { value: "optionC", label: "Option C" },
 ];
+const CheckPointData = [
+  { value: "ProcedureName", label: "Group Name" },
+  { value: "TypeOfMaintenance", label: "Option 2" },
+  { value: "option3", label: "Option 3" },
+];
 const AddProcedureModal = () => {
   const [open, setOpen] = useState(false);
   const [rows, setrows] = useState([]);
@@ -83,6 +92,8 @@ const AddProcedureModal = () => {
       width: 400,
     },
     { field: "SubItemPosition", headerName: "Position", width: 200 },
+    { field: "CheckPoint", headerName: "Check Point", width: 200 },
+    { field: "Description", headerName: "Description", width: 200 },
     {
       field: "delete",
       headerName: "Actions",
@@ -103,6 +114,8 @@ const AddProcedureModal = () => {
       ProcedureName: values.ProcedureName,
       SelectAsset: values.SelectAsset,
       MethodName: values.MethodName,
+      CheckPoint: values.CheckPoint,
+      Description: values.Description,
     };
     // Update the formData state with the new row data
     setrows((prevFormData) => [...prevFormData, rowData]);
@@ -338,7 +351,63 @@ const AddProcedureModal = () => {
                     )}
                   </FormControl>
                   <br />
-
+                  <Typography
+                    id="transition-modal-title"
+                    variant="h6"
+                    component="h6"
+                  >
+                    Health and Safety Checklist
+                  </Typography>
+                  <FormControl
+                    variant="outlined"
+                    margin="dense"
+                    size="small"
+                    style={{ width: "23ch" }}
+                    error={touched.MethodName && Boolean(errors.MethodName)}
+                  >
+                    <InputLabel>Check Point</InputLabel>
+                    <Field
+                      name="CheckPoint"
+                      label="Check Point"
+                      as={Select}
+                      labelId="CheckPoint-label"
+                      id="CheckPoint"
+                      value={values.CheckPoint}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={touched.CheckPoint && Boolean(errors.CheckPoint)}
+                      color="warning"
+                      InputProps={{
+                        style: { height: "40px", fontSize: "15px" },
+                      }}
+                    >
+                      {CheckPointData.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </Field>
+                    {touched.CheckPoint && errors.CheckPoint && (
+                      <div className="error">{errors.CheckPoint}</div>
+                    )}
+                  </FormControl>
+                  <TextField
+                    name="Description"
+                    label="Description"
+                    variant="outlined"
+                    fullWidth={false}
+                    margin="dense"
+                    value={values.Description}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.Description && Boolean(errors.Description)}
+                    helperText={touched.Description && errors.Description}
+                    color="warning"
+                    size="small"
+                    style={{ width: "22ch" }}
+                    InputProps={{ style: { height: "40px", fontSize: "15px" } }}
+                  />
+                  <br />
                   <Button
                     type="submit"
                     disabled={isSubmitting}

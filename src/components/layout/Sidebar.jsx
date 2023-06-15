@@ -5,6 +5,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink } from "react-router-dom";
 import { categories } from "../../assets/constants";
 import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import {
   Stack,
   Typography,
@@ -55,12 +57,27 @@ const Sidebar = ({ children }) => {
   return (
     <>
       <div className="container">
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          edge="start"
+          onClick={toggle}
+          className="menu-button"
+        >
+          <MenuIcon />
+        </IconButton>
         <div
           style={{
+            display: isOpen ? "block" : "none",
             width: isOpen ? "256px" : "70px",
             marginLeft: "4px",
             marginRight: "2px",
           }}
+          // style={{
+          //   width: isOpen ? "256px" : "70px",
+          //   marginLeft: "4px",
+          //   marginRight: "2px",
+          // }}
           className="sidebar"
         >
           <div className="top_section">
@@ -195,7 +212,7 @@ const Sidebar = ({ children }) => {
             </div>
           </div>
         </div>
-
+        {/* NAV BAR CODE */}
         <Stack className="pages">
           <Paper
             sx={{ px: 3, py: 3, mb: 3, borderRadius: 0.5 }}
@@ -255,6 +272,8 @@ const Sidebar = ({ children }) => {
           />
           {children}
         </Stack>
+
+        {/* <Navbar /> */}
       </div>
     </>
   );

@@ -7,10 +7,15 @@
 
 .sidebar {
     background: #fff;
+
+    /* color: #fff; */
     height: 100%;
     width: 256px;
     transition: all 0.5s;
-    box-shadow: 0.5px 0.05px 5px #c2cfe0;
+    box-shadow: 0.5px 0.05px 5px #C2CFE0;
+    ;
+    ;
+
 }
 
 .top_section {
@@ -18,11 +23,14 @@
     align-items: center;
     padding: 20px 15px;
     padding-bottom: 0px;
+
 }
+
 
 .logosize {
     width: 111px;
     height: 39px;
+    /* margin-left: 22px; */
 }
 
 .logoiconsize {
@@ -30,11 +38,12 @@
     height: 32px;
     padding-top: 20px;
     padding-bottom: 20px;
+
 }
 
 .arrow_sidebar {
     display: flex;
-    color: #c2cfe0;
+    color: #C2CFE0;
     opacity: 0.5;
 }
 
@@ -43,13 +52,14 @@
 }
 
 .arrowbutton {
-    color: #c2cfe0;
+    color: #C2CFE0;
     font-size: large;
 }
 
 .admin_bar {
     color: #c2d2e7;
     margin-left: 20px;
+
 }
 
 .bottom_sidebar {
@@ -60,7 +70,7 @@
 
 .link {
     display: flex;
-    color: #334d6e;
+    color: #334D6E;
     padding: 12px 20px;
     padding-top: 14px;
     padding-bottom: 9px;
@@ -70,20 +80,26 @@
     font-style: normal;
     font-weight: 600;
     text-decoration: none;
+
+    /* line-height: 19px; */
 }
 
 .link:hover {
-    background: #fbb515;
+    background: #FBB515;
+    /* color: ; */
     transition: all 0.5s;
     border-radius: 5px;
 }
 
 .active {
-    background: #fbb515;
+    background: #FBB515;
+    /* color: #000; */
     border-radius: 5px;
 }
 
 .active_menu {
+    /* background: #FBB515; */
+    /* color: #000; */
     border-radius: 5px;
 }
 
@@ -116,6 +132,7 @@
     display: flex;
     flex-direction: row;
     padding-left: 650px;
+
 }
 
 .menu-button {
@@ -146,33 +163,7 @@
         left: 70px;
     }
 
-    .link_text {
-        display: none;
-    }
-
-    .sidebar ul {
-        display: none;
-        position: absolute;
-        /* background: #fbb515; */
-        padding: 0;
-        margin: 0;
-    }
-
-    .sidebar:hover ul {
-        display: block;
-        width: 100%;
-        top: 0;
-        left: 70px;
-        transition: all 0.5s;
-    }
-
-    .sidebar:hover ul li {
-        width: 100%;
-        display: block;
-        text-align: left;
-        color: #fbb515;
-        /* Added text color */
-    }
+    /* Hide any other elements or reduce their size accordingly */
 }
 
 @media (max-width: 425px) {
@@ -180,13 +171,10 @@
     /* Mobile devices */
     .sidebar {
         display: none;
+        /* or adjust as per your design */
     }
 
     .pages {
         left: 0;
-    }
-
-    .right_navbar {
-        padding-left: 0;
     }
 }

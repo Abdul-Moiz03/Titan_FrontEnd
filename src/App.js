@@ -28,7 +28,7 @@ import Problem_Setting from "./components/pages/Settings/Problem_Setting";
 import WorkRequest from "./components/pages/Maintenance/WorkRequest";
 import WorkMethod from "./components/pages/Maintenance/WorkMethod";
 import WorkProcedure from "./components/pages/Maintenance/WorkProcedure";
-import WorkOrder from "./components/pages/Maintenance/WorkOrder.jsx";
+import WorkOrder from "./components/pages/Maintenance/WorkOrder/WorkOrder.jsx";
 import Equipment from "./components/pages/Inventory/Equipment";
 import UOM from "./components/pages/Inventory/UOM";
 import Brand from "./components/pages/Inventory/Brand";

@@ -4,10 +4,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Button, Switch } from "@mui/material";
-// import CreateIssuanceRequisitionModal from "./CreateIssuanceRequisitionModal";
 import EditIcon from "@mui/icons-material/Edit";
-import NewWorkRequestModal from "./NewWorkRequestModal";
-// import Schedule_Work_Order from "./Schedule_Work_Order";
+import AddProcedureModal from "./AddProcedureModal";
 const Switchbtn = (props) => {
   const [checked, setChecked] = useState(true);
 
@@ -163,9 +161,7 @@ const WorkProcedure = () => {
   return (
     <>
       <Box sx={{ px: 2, height: 600, width: "auto" }}>
-        {/* <CreateIssuanceRequisitionModal /> */}
-        {/* <Schedule_Work_Order /> */}
-        <NewWorkRequestModal />
+        <AddProcedureModal />
         <DataGrid
           rows={rows}
           columns={columns}

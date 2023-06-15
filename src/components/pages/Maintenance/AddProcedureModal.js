@@ -36,41 +36,53 @@ import DeleteIcon from "@mui/icons-material/Delete";
 // };
 
 const initialValues = {
+  ProcedureName: "",
+  TypeOfMaintenance: "",
+  SubItemPosition: "",
   SelectAsset: "",
-  UserName: "",
-
-  Headofproblem: "",
-  Description: "",
-  active: false,
+  MethodName: "",
 };
 const validationSchema = Yup.object().shape({
-  SelectAsset: Yup.string().required("Asset is required"),
-  UserName: Yup.string().required("UserName is required"),
-
-  Headofproblem: Yup.string().required("Head of problem is required"),
-  Description: Yup.string().required("Description is required"),
+  ProcedureName: Yup.string().required("Group Name is required"),
+  TypeOfMaintenance: Yup.string().required("Category Name is required"),
+  SubItemPosition: Yup.string().required("Text is required"),
+  SelectAsset: Yup.string().required("Group Name is required"),
+  MethodName: Yup.string().required("Group Name is required"),
 });
 
+const ProcedureNameData = [
+  { value: "ProcedureName", label: "Group Name" },
+  { value: "TypeOfMaintenance", label: "Option 2" },
+  { value: "option3", label: "Option 3" },
+];
+
+const TypeOfMaintenanceData = [
+  { value: "optionA", label: "Option A" },
+  { value: "optionB", label: "Option B" },
+  { value: "optionC", label: "Option C" },
+];
 const SelectAssetData = [
   { value: "optionA", label: "Option A" },
   { value: "optionB", label: "Option B" },
   { value: "optionC", label: "Option C" },
 ];
-const HeadofproblemData = [
-  { value: "SelectAssetModel", label: "Group Name" },
-  { value: "SelectAsset", label: "Option 2" },
-  { value: "option3", label: "Option 3" },
+const MethodNameData = [
+  { value: "optionA", label: "Option A" },
+  { value: "optionB", label: "Option B" },
+  { value: "optionC", label: "Option C" },
 ];
-const NewWorkRequestModal = () => {
+const AddProcedureModal = () => {
   const [open, setOpen] = useState(false);
   const [rows, setrows] = useState([]);
   console.log(JSON.stringify(rows));
   const columns = [
     { field: "id", headerName: "No", width: 70 },
-    { field: "UserName", headerName: "User Name", width: 200 },
-    { field: "SelectAsset", headerName: "Asset", width: 200 },
-    { field: "Headofproblem", headerName: "Head of problem", width: 200 },
-
+    {
+      field: "MethodName",
+      headerName: "Method Name",
+      width: 400,
+    },
+    { field: "SubItemPosition", headerName: "Position", width: 200 },
     {
       field: "delete",
       headerName: "Actions",
@@ -86,10 +98,11 @@ const NewWorkRequestModal = () => {
     // Construct the row data for the DataGrid
     const rowData = {
       id: rows.length + 1,
-      Headofproblem: values.Headofproblem,
+      SubItemPosition: values.SubItemPosition,
+      TypeOfMaintenance: values.TypeOfMaintenance,
+      ProcedureName: values.ProcedureName,
       SelectAsset: values.SelectAsset,
-      UserName: values.UserName,
-      active: values.active,
+      MethodName: values.MethodName,
     };
     // Update the formData state with the new row data
     setrows((prevFormData) => [...prevFormData, rowData]);
@@ -112,7 +125,7 @@ const NewWorkRequestModal = () => {
   };
   return (
     <>
-      <AddButton onClickHandle={handleOpen} caption="Work Request" />
+      <AddButton onClickHandle={handleOpen} caption="Procedure" />
 
       <Modal
         aria-labelledby="transition-modal-title"
@@ -145,7 +158,7 @@ const NewWorkRequestModal = () => {
             }}
           >
             <Typography id="transition-modal-title" variant="h4" component="h4">
-              Work Request
+              Add Procedure
             </Typography>
             <Formik
               initialValues={initialValues}
@@ -162,24 +175,80 @@ const NewWorkRequestModal = () => {
                 isSubmitting,
               }) => (
                 <Form onSubmit={handleSubmit}>
-                  <br />
-                  <TextField
-                    name="UserName"
-                    label="User Name"
+                  <FormControl
                     variant="outlined"
-                    fullWidth={false}
                     margin="dense"
-                    value={values.UserName}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={touched.UserName && Boolean(errors.UserName)}
-                    helperText={touched.UserName && errors.UserName}
-                    color="warning"
                     size="small"
                     style={{ width: "45ch" }}
-                    InputProps={{ style: { height: "40px", fontSize: "15px" } }}
-                  />
-
+                    error={
+                      touched.ProcedureName && Boolean(errors.ProcedureName)
+                    }
+                  >
+                    <InputLabel>Procedure Name</InputLabel>
+                    <Field
+                      name="ProcedureName"
+                      label="Procedure Name"
+                      as={Select}
+                      labelId="ProcedureName-label"
+                      id="ProcedureName"
+                      value={values.ProcedureName}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={
+                        touched.ProcedureName && Boolean(errors.ProcedureName)
+                      }
+                      color="warning"
+                      InputProps={{
+                        style: { height: "40px", fontSize: "15px" },
+                      }}
+                    >
+                      {ProcedureNameData.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </Field>
+                    {touched.ProcedureName && errors.ProcedureName && (
+                      <div className="error">{errors.ProcedureName}</div>
+                    )}
+                  </FormControl>
+                  <br />
+                  <FormControl
+                    variant="outlined"
+                    margin="dense"
+                    size="small"
+                    style={{ width: "45ch" }}
+                    error={
+                      touched.TypeOfMaintenance &&
+                      Boolean(errors.TypeOfMaintenance)
+                    }
+                  >
+                    <InputLabel>Type Of Maintenance</InputLabel>
+                    <Field
+                      name="TypeOfMaintenance"
+                      label="Type Of Maintenance"
+                      as={Select}
+                      labelId="TypeOfMaintenance-label"
+                      id="TypeOfMaintenance"
+                      value={values.TypeOfMaintenance}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={
+                        touched.TypeOfMaintenance &&
+                        Boolean(errors.TypeOfMaintenance)
+                      }
+                      color="warning"
+                    >
+                      {TypeOfMaintenanceData.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </Field>
+                    {touched.TypeOfMaintenance && errors.TypeOfMaintenance && (
+                      <div className="error">{errors.TypeOfMaintenance}</div>
+                    )}
+                  </FormControl>
                   <br />
                   <FormControl
                     variant="outlined"
@@ -200,6 +269,9 @@ const NewWorkRequestModal = () => {
                       onBlur={handleBlur}
                       error={touched.SelectAsset && Boolean(errors.SelectAsset)}
                       color="warning"
+                      InputProps={{
+                        style: { height: "40px", fontSize: "15px" },
+                      }}
                     >
                       {SelectAssetData.map((option) => (
                         <MenuItem key={option.value} value={option.value}>
@@ -212,67 +284,59 @@ const NewWorkRequestModal = () => {
                     )}
                   </FormControl>
                   <br />
-
+                  <TextField
+                    name="SubItemPosition"
+                    label="Sub Item Position"
+                    variant="outlined"
+                    fullWidth={false}
+                    margin="dense"
+                    value={values.SubItemPosition}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={
+                      touched.SubItemPosition && Boolean(errors.SubItemPosition)
+                    }
+                    helperText={
+                      touched.SubItemPosition && errors.SubItemPosition
+                    }
+                    color="warning"
+                    size="small"
+                    style={{ width: "22ch" }}
+                    InputProps={{ style: { height: "40px", fontSize: "15px" } }}
+                  />
                   <FormControl
                     variant="outlined"
                     margin="dense"
                     size="small"
-                    style={{ width: "45ch" }}
-                    error={touched.SelectAsset && Boolean(errors.SelectAsset)}
+                    style={{ width: "23ch" }}
+                    error={touched.MethodName && Boolean(errors.MethodName)}
                   >
-                    <InputLabel>Head of problem</InputLabel>
+                    <InputLabel>Method Name</InputLabel>
                     <Field
-                      name="Headofproblem"
-                      label="Head of problem"
+                      name="MethodName"
+                      label="Method Name"
                       as={Select}
-                      labelId="Headofproblem-label"
-                      id="Headofproblem"
-                      value={values.Headofproblem}
+                      labelId="MethodName-label"
+                      id="MethodName"
+                      value={values.MethodName}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      error={
-                        touched.Headofproblem && Boolean(errors.Headofproblem)
-                      }
+                      error={touched.MethodName && Boolean(errors.MethodName)}
                       color="warning"
+                      InputProps={{
+                        style: { height: "40px", fontSize: "15px" },
+                      }}
                     >
-                      {HeadofproblemData.map((option) => (
+                      {MethodNameData.map((option) => (
                         <MenuItem key={option.value} value={option.value}>
                           {option.label}
                         </MenuItem>
                       ))}
                     </Field>
-                    {touched.Headofproblem && errors.Headofproblem && (
-                      <div className="error">{errors.Headofproblem}</div>
+                    {touched.MethodName && errors.MethodName && (
+                      <div className="error">{errors.MethodName}</div>
                     )}
                   </FormControl>
-                  <br />
-                  <TextField
-                    name="Description"
-                    label="Description"
-                    variant="outlined"
-                    fullWidth={false}
-                    margin="dense"
-                    value={values.Description}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={touched.Description && Boolean(errors.Description)}
-                    helperText={touched.Description && errors.Description}
-                    color="warning"
-                    size="small"
-                    style={{ width: "45ch" }}
-                    InputProps={{ style: { height: "40px", fontSize: "15px" } }}
-                  />
-                  <br />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        name="active"
-                        checked={values.active}
-                        onChange={handleChange}
-                      />
-                    }
-                    label="Active"
-                  />
                   <br />
 
                   <Button
@@ -340,8 +404,8 @@ const NewWorkRequestModal = () => {
                     {/* </Link> */}
                   </Box>
                   {/* <Button variant="contained" color="primary">
-                        Submit
-                      </Button> */}
+                      Submit
+                    </Button> */}
                 </Form>
               )}
             </Formik>
@@ -352,4 +416,4 @@ const NewWorkRequestModal = () => {
   );
 };
 
-export default NewWorkRequestModal;
+export default AddProcedureModal;

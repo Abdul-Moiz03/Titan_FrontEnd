@@ -21,19 +21,19 @@ import { AddButton } from "../../../assets/buttons/AddButton";
 import Table from "../AdminScreens/Table";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const style = {
-  position: "relative",
-  top: "50%",
-  left: "50%",
-  height: "80%",
-  transform: "translate(-50%, -50%)",
-  width: 1200,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-  overflow: "scroll",
-};
+// const style = {
+//   position: "relative",
+//   top: "50%",
+//   left: "50%",
+//   height: "80%",
+//   transform: "translate(-50%, -50%)",
+//   width: 1200,
+//   bgcolor: "background.paper",
+//   border: "2px solid #000",
+//   boxShadow: 24,
+//   p: 4,
+//   overflow: "scroll",
+// };
 
 const initialValues = {
   SelectAssetModel: "",
@@ -135,7 +135,22 @@ const Schedule_Work_Order = () => {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
+          <Box
+            sx={{
+              position: "relative",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "90%",
+              maxWidth: 1200,
+              maxHeight: "90%",
+              bgcolor: "background.paper",
+              border: "2px solid #000",
+              boxShadow: 24,
+              p: 4,
+              overflow: "scroll",
+            }}
+          >
             <Typography id="transition-modal-title" variant="h4" component="h4">
               Schedule Work Request
             </Typography>

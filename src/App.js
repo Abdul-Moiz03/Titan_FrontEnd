@@ -41,6 +41,7 @@ import Maintenance_Model from "./components/pages/Preventive/Maintenance_Model";
 const App = () => {
   return (
     <BrowserRouter>
+    <div style={{backgroundColor: '#F5F6F8'}}>
       <Sidebar>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -112,6 +113,7 @@ const App = () => {
             
         </Routes>
       </Sidebar>
+              </div>
     </BrowserRouter>
   );
 };

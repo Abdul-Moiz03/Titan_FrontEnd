@@ -218,7 +218,7 @@ const StatusRepair = () => {
                       <FormLabel id="demo-row-radio-buttons-group-label">Status</FormLabel>
                       <RadioGroup
                         row
-                        value = {values.status}
+                        // value = {values.status}
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="row-radio-buttons-group"
                       >
@@ -235,7 +235,7 @@ const StatusRepair = () => {
                       <FormLabel id="demo-row-radio-buttons-group-label">Repair Source</FormLabel>
                       <RadioGroup
                         row
-                        value = {values.repairSource}
+                        // value = {values.repairSource}
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="row-radio-buttons-group"
                       >

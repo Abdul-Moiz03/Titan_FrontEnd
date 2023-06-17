@@ -111,6 +111,7 @@ export const categories = [
         { id: 8, title: "Maintenance Type", pathh: "/Settings/Maintenance_Setting" },
         { id: 9, title: "Priority", pathh: "/Settings/Priority_Setting" },
         { id: 10, title: "Type of Problem", pathh: "/Settings/Problem_Setting" },
+        { id: 10, title: "Calendar Setting", pathh: "/Settings/Calendar_Setting" },
       ],
     path: "/settings" },
 ];

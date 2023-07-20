@@ -10,6 +10,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import Typography from "@mui/material/Typography";
 import { Switch } from "@mui/material";
 import { AddButton } from "../../../assets/buttons/AddButton";
+import { useEffect } from "react";
 
 const Switchbtn = (props) => {
   const [checked, setChecked] = useState(true);
@@ -27,19 +28,18 @@ const Switchbtn = (props) => {
   );
 };
 
-
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
   {
-    field: "Name",
+    field: "deptName",
     headerName: "Name",
     width: 270,
     type: "string",
   },
 
   {
-    field: "noSubDept",
-    headerName: "No of Sub Departments",
+    field: "status",
+    headerName: "status",
     type: "number",
     width: 400,
     headerAlign: "center",
@@ -99,97 +99,123 @@ const Viewbtn = (props) => {
   );
 };
 
-const rows = [
-  {
-    id: 1,
-    Name: "Snow",
-    empname: 35,
-    noSubDept: 35,
-  },
-  {
-    id: 2,
-    Name: "Lannister",
-    empname: "Cersei",
-    noSubDept: 42,
-  },
-  {
-    id: 3,
-    Name: "Lannister",
-    empname: "Jaime",
-    noSubDept: 45,
-  },
-  {
-    id: 4,
-    Name: "Stark",
-    empname: "Arya",
-    noSubDept: 16,
-  },
-  {
-    id: 5,
-    Name: "Targaryen",
-    empname: "Daenerys",
-    noSubDept: null,
-  },
-  {
-    id: 6,
-    Name: "Melisandre",
-    empname: null,
-    noSubDept: 150,
-  },
-  {
-    id: 7,
-    Name: "Clifford",
-    empname: "Ferrara",
-    noSubDept: 44,
-  },
-];
-
+// const rows = [
+//   {
+//     id: 1,
+//     Name: "Snow",
+//     empname: 35,
+//     noSubDept: 35,
+//   },
+//   {
+//     id: 2,
+//     Name: "Lannister",
+//     empname: "Cersei",
+//     noSubDept: 42,
+//   },
+//   {
+//     id: 3,
+//     Name: "Lannister",
+//     empname: "Jaime",
+//     noSubDept: 45,
+//   },
+//   {
+//     id: 4,
+//     Name: "Stark",
+//     empname: "Arya",
+//     noSubDept: 16,
+//   },
+//   {
+//     id: 5,
+//     Name: "Targaryen",
+//     empname: "Daenerys",
+//     noSubDept: null,
+//   },
+//   {
+//     id: 6,
+//     Name: "Melisandre",
+//     empname: null,
+//     noSubDept: 150,
+//   },
+//   {
+//     id: 7,
+//     Name: "Clifford",
+//     empname: "Ferrara",
+//     noSubDept: 44,
+//   },
+// ];
 
 export default function Dept_Setting() {
+  const [rowss, setRowss] = useState([]);
+
+  const GettingData = async () => {
+    const token = localStorage.getItem("token");
+
+    try {
+      const response = await fetch("http://localhost:8007/api/Departments", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      const arr = [];
+      setRowss(arr);
+      for (let i = 0; i < data.length; i++) {
+        const obj = { ...data[i], id: i + 1 };
+        arr.push(obj);
+      }
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
+  useEffect(() => {
+    GettingData();
+  }, []);
+
   return (
     <>
-      <Box sx={{ px: 2, height: 600, width: "auto"  }}>
+      <Box sx={{ px: 2, height: 600, width: "auto" }}>
         {/* <CreateIssuanceRequisitionModal /> */}
 
         <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Typography
-                  fontSize={25}
-                  marginBottom={0}
-                  style={{ fontWeight: 600 }}
-                >
-                  Departments
-                </Typography>
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            fontSize={25}
+            marginBottom={0}
+            style={{ fontWeight: 600 }}
+          >
+            Departments
+          </Typography>
 
-                <Button
-                    type="submit"
-                    // disabled={isSubmitting}
-                    fullWidth={false}
-                    variant="contained"
-                    sx={{
-                      mt: 2,
-                      mb: 2,
-                      backgroundColor: "#FBB515",
-                      color: "black",
-                      "&:hover": {
-                        backgroundColor: "#FABE4B",
-                      },
-                    }}
-                  >
-                    &nbsp; Sync from HR &nbsp;
-                  </Button>
+          <Button
+            type="submit"
+            // disabled={isSubmitting}
+            fullWidth={false}
+            variant="contained"
+            sx={{
+              mt: 2,
+              mb: 2,
+              backgroundColor: "#FBB515",
+              color: "black",
+              "&:hover": {
+                backgroundColor: "#FABE4B",
+              },
+            }}
+          >
+            &nbsp; Sync from HR &nbsp;
+          </Button>
 
-                {/* <Create_Profile /> */}
-
+          {/* <Create_Profile /> */}
         </Box>
-        
+
         <DataGrid
-          rows={rows}
+          rows={rowss}
           columns={columns}
           initialState={{
             pagination: {

@@ -38,82 +38,106 @@ import IssuanceDetail from "./components/pages/Inventory/IssuanceDetail";
 import Preventive_Maintenance from "./components/pages/Preventive/Preventive_Maintenance";
 import Batch_Inspection_Entries from "./components/pages/Preventive/Batch_Inspection_Entries";
 import Maintenance_Model from "./components/pages/Preventive/Maintenance_Model";
+import SignInSide from "./components/layout/SignInSide";
+import SingUp from "./components/layout/SignUp";
 const App = () => {
   return (
     <BrowserRouter>
-    <div style={{backgroundColor: '#F5F6F8'}}>
-      <Sidebar>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/maintenance" element={<Maintenance />} />
-          <Route path="/maintenance/workrequest" element={<WorkRequest />} />
-          <Route path="/maintenance/workorder" element={<WorkOrder />} />
+      <div style={{ backgroundColor: "#F5F6F8" }}>
+        <Sidebar>
+          <Routes>
+            <Route path="/SignIn" element={<SignInSide />} />
+            <Route path="/SignUp" element={<SingUp />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/maintenance" element={<Maintenance />} />
+            <Route path="/maintenance/workrequest" element={<WorkRequest />} />
+            <Route path="/maintenance/workorder" element={<WorkOrder />} />
 
-          <Route
-            path="/maintenance/workprocedure"
-            element={<WorkProcedure />}
-          />
+            <Route
+              path="/maintenance/workprocedure"
+              element={<WorkProcedure />}
+            />
 
-          <Route path="/maintenance/workmethod" element={<WorkMethod />} />
+            <Route path="/maintenance/workmethod" element={<WorkMethod />} />
 
-          <Route path="/asset" element={<Asset />} />
-          <Route path="/preventive" element={<Preventive />} />
-          <Route
-            path="/Preventive/Maintenance_Model"
-            element={<Maintenance_Model />}
-          />
-          <Route
-            path="/Preventive/Preventive_Maintenance"
-            element={<Preventive_Maintenance />}
-          />
-          <Route
-            path="/Preventive/Batch_Inspection_Entries"
-            element={<Batch_Inspection_Entries />}
-          />
+            <Route path="/asset" element={<Asset />} />
+            <Route path="/preventive" element={<Preventive />} />
+            <Route
+              path="/Preventive/Maintenance_Model"
+              element={<Maintenance_Model />}
+            />
+            <Route
+              path="/Preventive/Preventive_Maintenance"
+              element={<Preventive_Maintenance />}
+            />
+            <Route
+              path="/Preventive/Batch_Inspection_Entries"
+              element={<Batch_Inspection_Entries />}
+            />
 
-          <Route path="/report" element={<Report />} />
-          <Route path="/inventory" element={<Inventory />} />
-          <Route path="/Inventory/Equipment" element={<Equipment />} />
-          <Route path="/Inventory/uom" element={<UOM />} />
-          <Route path="/Inventory/brand" element={<Brand />} />
-          <Route
-            path="/Inventory/purchaseRequisition"
-            element={<PurchaseRequisition />}
-          />
-          <Route
-            path="/Inventory/issuanceRequisition"
-            element={<IssuanceRequisition />}
-          />
-          <Route
-            path="/Inventory/issuanceDetail"
-            element={<IssuanceDetail />}
-          />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/AdminScreens/Users" element={<Users />} />
-          <Route path="/AdminScreens/Roles" element={<Roles />} />
-          <Route path="/AdminScreens/Permission" element={<Permission />} />
-          <Route path="/AdminScreens/Profile" element={<Profile />} />
+            <Route path="/report" element={<Report />} />
+            <Route path="/inventory" element={<Inventory />} />
+            <Route path="/Inventory/Equipment" element={<Equipment />} />
+            <Route path="/Inventory/uom" element={<UOM />} />
+            <Route path="/Inventory/brand" element={<Brand />} />
+            <Route
+              path="/Inventory/purchaseRequisition"
+              element={<PurchaseRequisition />}
+            />
+            <Route
+              path="/Inventory/issuanceRequisition"
+              element={<IssuanceRequisition />}
+            />
+            <Route
+              path="/Inventory/issuanceDetail"
+              element={<IssuanceDetail />}
+            />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/AdminScreens/Users" element={<Users />} />
+            <Route path="/AdminScreens/Roles" element={<Roles />} />
+            <Route path="/AdminScreens/Permission" element={<Permission />} />
+            <Route path="/AdminScreens/Profile" element={<Profile />} />
 
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/Settings/Dept_Setting" element={<Dept_Setting />} />
-          <Route path="/Settings/Emp_Setting" element={<Emp_Setting />} />
-          <Route path="/Settings/Facility_Setting" element={<Facility_Setting />} />
-          <Route path="/Settings/Floor_Setting" element={<Floor_Setting />} />
-          <Route path="/Settings/Func_Loc_Setting" element={<Func_Loc_Setting />} />
-          <Route path="/Settings/Position_Setting" element={<Position_Setting />} />
-          <Route path="/Settings/Tool_Setting" element={<Tool_Setting />} />
-          <Route path="/Settings/Method_Setting" element={<Method_Setting />} />
-          <Route path="/Settings/Maintenance_Setting" element={<Maintenance_Setting />} />
-          <Route path="/Settings/Priority_Setting" element={<Priority_Setting />} />
-          <Route path="/Settings/Problem_Setting" element={<Problem_Setting />} />
-            
-          <Route path="/asset" element={<Asset />} />
-          <Route path="/Asset/Asset_Model" element={<Asset_Model />} />
-          <Route path="/Asset/Assets" element={<Assets />} />
-            
-        </Routes>
-      </Sidebar>
-              </div>
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/Settings/Dept_Setting" element={<Dept_Setting />} />
+            <Route path="/Settings/Emp_Setting" element={<Emp_Setting />} />
+            <Route
+              path="/Settings/Facility_Setting"
+              element={<Facility_Setting />}
+            />
+            <Route path="/Settings/Floor_Setting" element={<Floor_Setting />} />
+            <Route
+              path="/Settings/Func_Loc_Setting"
+              element={<Func_Loc_Setting />}
+            />
+            <Route
+              path="/Settings/Position_Setting"
+              element={<Position_Setting />}
+            />
+            <Route path="/Settings/Tool_Setting" element={<Tool_Setting />} />
+            <Route
+              path="/Settings/Method_Setting"
+              element={<Method_Setting />}
+            />
+            <Route
+              path="/Settings/Maintenance_Setting"
+              element={<Maintenance_Setting />}
+            />
+            <Route
+              path="/Settings/Priority_Setting"
+              element={<Priority_Setting />}
+            />
+            <Route
+              path="/Settings/Problem_Setting"
+              element={<Problem_Setting />}
+            />
+
+            <Route path="/asset" element={<Asset />} />
+            <Route path="/Asset/Asset_Model" element={<Asset_Model />} />
+            <Route path="/Asset/Assets" element={<Assets />} />
+          </Routes>
+        </Sidebar>
+      </div>
     </BrowserRouter>
   );
 };

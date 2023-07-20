@@ -2,17 +2,21 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/layout/Sidebar";
 import Home from "./components/pages/Home";
 import Maintenance from "./components/pages/Maintenance/Maintenance";
+
 import Asset from "./components/pages/Asset/Asset";
 import Asset_Model from "./components/pages/Asset/Asset_Model";
 import Assets from "./components/pages/Asset/Assets";
+
 import Preventive from "./components/pages/Preventive/Preventive";
 import Report from "./components/pages/Report";
 import Inventory from "./components/pages/Inventory/Inventory";
+
 import Admin from "./components/pages/AdminScreens/Admin";
 import Users from "./components/pages/AdminScreens/Users";
 import Roles from "./components/pages/AdminScreens/Roles";
 import Permission from "./components/pages/AdminScreens/Permission";
 import Profile from "./components/pages/AdminScreens/Profile";
+
 import Settings from "./components/pages/Settings/Settings";
 import Dept_Setting from "./components/pages/Settings/Dept_Setting";
 import Emp_Setting from "./components/pages/Settings/Emp_Setting";
@@ -25,21 +29,27 @@ import Method_Setting from "./components/pages/Settings/Method_Setting";
 import Maintenance_Setting from "./components/pages/Settings/Maintenance_Setting";
 import Priority_Setting from "./components/pages/Settings/Priority_Setting";
 import Problem_Setting from "./components/pages/Settings/Problem_Setting";
+import Calendar_Setting from "./components/pages/Settings/Calendar_Setting";
+
 import WorkRequest from "./components/pages/Maintenance/WorkRequest";
 import WorkMethod from "./components/pages/Maintenance/WorkMethod";
 import WorkProcedure from "./components/pages/Maintenance/WorkProcedure";
 import WorkOrder from "./components/pages/Maintenance/WorkOrder/WorkOrder.jsx";
+
 import Equipment from "./components/pages/Inventory/Equipment";
 import UOM from "./components/pages/Inventory/UOM";
 import Brand from "./components/pages/Inventory/Brand";
 import PurchaseRequisition from "./components/pages/Inventory/PurchaseRequisition";
 import IssuanceRequisition from "./components/pages/Inventory/IssuanceRequisition";
 import IssuanceDetail from "./components/pages/Inventory/IssuanceDetail";
+
 import Preventive_Maintenance from "./components/pages/Preventive/Preventive_Maintenance";
 import Batch_Inspection_Entries from "./components/pages/Preventive/Batch_Inspection_Entries";
 import Maintenance_Model from "./components/pages/Preventive/Maintenance_Model";
+
 import SignInSide from "./components/layout/SignInSide";
 import SingUp from "./components/layout/SignUp";
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -97,7 +107,6 @@ const App = () => {
             <Route path="/AdminScreens/Roles" element={<Roles />} />
             <Route path="/AdminScreens/Permission" element={<Permission />} />
             <Route path="/AdminScreens/Profile" element={<Profile />} />
-
             <Route path="/settings" element={<Settings />} />
             <Route path="/Settings/Dept_Setting" element={<Dept_Setting />} />
             <Route path="/Settings/Emp_Setting" element={<Emp_Setting />} />
@@ -130,6 +139,10 @@ const App = () => {
             <Route
               path="/Settings/Problem_Setting"
               element={<Problem_Setting />}
+            />
+            <Route
+              path="/Settings/Calendar_Setting"
+              element={<Calendar_Setting />}
             />
 
             <Route path="/asset" element={<Asset />} />

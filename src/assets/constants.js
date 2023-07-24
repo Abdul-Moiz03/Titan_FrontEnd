@@ -85,6 +85,7 @@ export const categories = [
       },
       { id: 6, title: "Issuance Detail", pathh: "/Inventory/issuanceDetail" },
       { id: 7, title: "Group", pathh: "/Inventory/Group" },
+      { id: 8, title: "Category", pathh: "/Inventory/Category" },
     ],
   },
   {

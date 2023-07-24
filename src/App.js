@@ -49,6 +49,7 @@ import Maintenance_Model from "./components/pages/Preventive/Maintenance_Model";
 
 import SignInSide from "./components/layout/SignInSide";
 import SingUp from "./components/layout/SignUp";
+import Category from "./components/pages/Inventory/Category";
 
 const App = () => {
   return (
@@ -103,6 +104,7 @@ const App = () => {
               element={<IssuanceDetail />}
             />
             <Route path="/Inventory/Group" element={<Group />} />
+            <Route path="/Inventory/Category" element={<Category />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/AdminScreens/Users" element={<Users />} />
             <Route path="/AdminScreens/Roles" element={<Roles />} />

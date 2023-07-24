@@ -3,11 +3,12 @@ import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import { Switch } from "@mui/material";
+import UOM_Modal from "./UOM_Modal";
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
   {
-    field: "name",
-    headerName: "Name",
+    field: "uomName",
+    headerName: "Unit Of Measurement",
     width: 800,
   },
   {
@@ -82,11 +83,43 @@ const rows = [
 ];
 
 export default function UOM() {
+  const [rowss, setRowss] = useState([]);
+  const GettingData = async () => {
+    const token = localStorage.getItem("token");
+
+    try {
+      const response = await fetch(
+        "http://localhost:8007/api/UnitOfMeasurements",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = await response.json();
+      const arr = [];
+      setRowss(arr);
+      for (let i = 0; i < data.length; i++) {
+        const obj = { ...data[i], id: i + 1 };
+        const { id, uomName, status } = obj;
+        arr.push({ id, uomName, status });
+      }
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
+  // useEffect(() => {
+  //   GettingData();
+  // }, []);
+  GettingData();
   return (
     <>
       <Box sx={{ px: 2, height: 600, width: "auto" }}>
+        <UOM_Modal />
         <DataGrid
-          rows={rows}
+          rows={rowss}
           columns={columns}
           initialState={{
             pagination: {

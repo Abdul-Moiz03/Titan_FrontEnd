@@ -36,7 +36,7 @@ export const categories = [
     subCategories: [
       { id: 1, title: "Asset Model", pathh: "/Asset/Asset_Model" },
       { id: 2, title: "Asset", pathh: "/Asset/Assets" },
-    ]
+    ],
   },
 
   {
@@ -84,6 +84,7 @@ export const categories = [
         pathh: "/Inventory/issuanceRequisition",
       },
       { id: 6, title: "Issuance Detail", pathh: "/Inventory/issuanceDetail" },
+      { id: 7, title: "Group", pathh: "/Inventory/Group" },
     ],
   },
   {
@@ -98,20 +99,36 @@ export const categories = [
     ],
     path: "/admin",
   },
-  { id: 9, name: "Settings", icon: <SettingsIcon />,
-      subCategories: [
-        { id: 1, title: "Department", pathh: "/Settings/Dept_Setting" },
-        { id: 2, title: "Employee", pathh: "/Settings/Emp_Setting" },
-        { id: 3, title: "Facility", pathh: "/Settings/Facility_Setting" },
-        { id: 4, title: "Floor", pathh: "/Settings/Floor_Setting" },
-        { id: 5, title: "Functional Location", pathh: "/Settings/Func_Loc_Setting" },
-        { id: 5, title: "Position", pathh: "/Settings/Position_Setting" },
-        { id: 6, title: "Tool", pathh: "/Settings/Tool_Setting" },
-        { id: 7, title: "Method Type", pathh: "/Settings/Method_Setting" },
-        { id: 8, title: "Maintenance Type", pathh: "/Settings/Maintenance_Setting" },
-        { id: 9, title: "Priority", pathh: "/Settings/Priority_Setting" },
-        { id: 10, title: "Type of Problem", pathh: "/Settings/Problem_Setting" },
-        { id: 10, title: "Calendar Setting", pathh: "/Settings/Calendar_Setting" },
-      ],
-    path: "/settings" },
+  {
+    id: 9,
+    name: "Settings",
+    icon: <SettingsIcon />,
+    subCategories: [
+      { id: 1, title: "Department", pathh: "/Settings/Dept_Setting" },
+      { id: 2, title: "Employee", pathh: "/Settings/Emp_Setting" },
+      { id: 3, title: "Facility", pathh: "/Settings/Facility_Setting" },
+      { id: 4, title: "Floor", pathh: "/Settings/Floor_Setting" },
+      {
+        id: 5,
+        title: "Functional Location",
+        pathh: "/Settings/Func_Loc_Setting",
+      },
+      { id: 5, title: "Position", pathh: "/Settings/Position_Setting" },
+      { id: 6, title: "Tool", pathh: "/Settings/Tool_Setting" },
+      { id: 7, title: "Method Type", pathh: "/Settings/Method_Setting" },
+      {
+        id: 8,
+        title: "Maintenance Type",
+        pathh: "/Settings/Maintenance_Setting",
+      },
+      { id: 9, title: "Priority", pathh: "/Settings/Priority_Setting" },
+      { id: 10, title: "Type of Problem", pathh: "/Settings/Problem_Setting" },
+      {
+        id: 10,
+        title: "Calendar Setting",
+        pathh: "/Settings/Calendar_Setting",
+      },
+    ],
+    path: "/settings",
+  },
 ];

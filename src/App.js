@@ -42,7 +42,7 @@ import Brand from "./components/pages/Inventory/Brand";
 import PurchaseRequisition from "./components/pages/Inventory/PurchaseRequisition";
 import IssuanceRequisition from "./components/pages/Inventory/IssuanceRequisition";
 import IssuanceDetail from "./components/pages/Inventory/IssuanceDetail";
-
+import Group from "./components/pages/Inventory/Groups";
 import Preventive_Maintenance from "./components/pages/Preventive/Preventive_Maintenance";
 import Batch_Inspection_Entries from "./components/pages/Preventive/Batch_Inspection_Entries";
 import Maintenance_Model from "./components/pages/Preventive/Maintenance_Model";
@@ -102,6 +102,7 @@ const App = () => {
               path="/Inventory/issuanceDetail"
               element={<IssuanceDetail />}
             />
+            <Route path="/Inventory/Group" element={<Group />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/AdminScreens/Users" element={<Users />} />
             <Route path="/AdminScreens/Roles" element={<Roles />} />

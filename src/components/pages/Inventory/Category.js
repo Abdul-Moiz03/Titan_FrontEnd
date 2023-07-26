@@ -8,6 +8,7 @@ import Groups_Modal from "./Groups_Modal";
 import { AddButton } from "../../../assets/buttons/AddButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useEffect } from "react";
+import Category_Modal from "./Category_Modal";
 
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
@@ -153,17 +154,6 @@ export default function Category() {
       processData(data).then((arr) => {
         setRowss(arr);
       });
-      //   const arr = [];
-
-      //   for (let i = 0; i < data.length; i++) {
-      //     const obj = { ...data[i], id: i + 1 };
-
-      //     GettingGroupData(obj.groupAutoId).then((groupName) => {
-      //       obj.groupName = groupName;
-      //     });
-      //     arr.push(obj);
-      //   }
-      //   setRowss(arr);
     } catch (error) {
       console.log("Error", error);
     }
@@ -171,7 +161,7 @@ export default function Category() {
 
   useEffect(() => {
     GettingData();
-  }, []);
+  }, [rowss]);
 
   const handleOpenCreateModal = () => {
     setIsModalOpen(true); // Open the modal for create
@@ -191,14 +181,14 @@ export default function Category() {
       <AddButton onClickHandle={handleOpenCreateModal} caption="Category" />
       <Box sx={{ px: 2, height: 600, width: "auto" }}>
         {isModalOpen && !rowDataForEdit && (
-          <Groups_Modal
+          <Category_Modal
             isEdit={false}
             isOpen={isModalOpen}
             onClose={handleCloseModal}
           />
         )}
         {isModalOpen && rowDataForEdit && (
-          <Groups_Modal
+          <Category_Modal
             isEdit={true}
             rowData={rowDataForEdit}
             isOpen={isModalOpen}

@@ -11,7 +11,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 export const logo = "https://i.ibb.co/s9Qys2j/logo.png";
 
 export const categories = [
-  { id: 1, name: "Search", icon: <SearchIcon />, path: "seacrch" },
+  // { id: 1, name: "Search", icon: <SearchIcon />, path: "seacrch" },
   // { name: 'JS Mastery', icon: <CodeIcon />, },
   { id: 2, name: "Home", icon: <HomeIcon />, path: "/" },
 
@@ -19,7 +19,7 @@ export const categories = [
     id: 3,
     name: "Maintenance",
     icon: <HandymanIcon />,
-    path: "/maintenance",
+    path: "/maintenance/workrequest",
     subCategories: [
       { id: 1, title: "Work Request", pathh: "/maintenance/workrequest" },
       { id: 2, title: "Work Order", pathh: "/maintenance/workorder" },
@@ -32,7 +32,7 @@ export const categories = [
     id: 4,
     name: "Asset",
     icon: <WebAssetIcon />,
-    path: "/asset",
+    path: "/Asset/Asset_Model",
     subCategories: [
       { id: 1, title: "Asset Model", pathh: "/Asset/Asset_Model" },
       { id: 2, title: "Asset", pathh: "/Asset/Assets" },
@@ -60,7 +60,7 @@ export const categories = [
         pathh: "/Preventive/Batch_Inspection_Entries",
       },
     ],
-    path: "/preventive",
+    path: "/Preventive/Maintenance_Model",
   },
 
   { id: 6, name: "Report", icon: <PieChartIcon />, path: "/report" },
@@ -68,7 +68,7 @@ export const categories = [
     id: 7,
     name: "Inventory",
     icon: <ViewCarouselIcon />,
-    path: "/inventory",
+    path: "/Inventory/Equipment",
     subCategories: [
       { id: 1, title: "Equipment", pathh: "/Inventory/Equipment" },
       { id: 2, title: "UOM", pathh: "/Inventory/uom" },
@@ -98,7 +98,7 @@ export const categories = [
       { id: 3, title: "Permission", pathh: "/AdminScreens/Permission" },
       { id: 4, title: "Profile", pathh: "/AdminScreens/Profile" },
     ],
-    path: "/admin",
+    path: "/AdminScreens/Users",
   },
   {
     id: 9,
@@ -130,6 +130,6 @@ export const categories = [
         pathh: "/Settings/Calendar_Setting",
       },
     ],
-    path: "/settings",
+    path: "/Settings/Dept_Setting",
   },
 ];

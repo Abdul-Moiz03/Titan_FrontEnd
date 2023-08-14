@@ -15,21 +15,39 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import titan from "../titan.png";
 import Container from "@mui/material/Container";
 import { sizing } from "@mui/system";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const theme = createTheme();
 
 export default function SingUp() {
-  const handleSubmint = async function fetchDataFromBackend() {
+  const Navigate = useNavigate();
+  const [payload, setpayload] = useState({});
+  console.log(payload);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
     const payload = {
-      companyName: "Lucky Soap",
-      companyEmail: "luckysoap@gmail.com",
-      companyPhone: "03113171471",
-      userFirstName: "Donald",
-      userLastName: "Lue",
-      password: "#lucky@12345",
+      companyName: data.get("company"),
+      companyEmail: data.get("email"),
+      companyPhone: data.get("phone"),
+      userFirstName: data.get("firstName"),
+      userLastName: data.get("lastName"),
+      password: data.get("password"),
       status: "Active",
     };
+    setpayload(payload);
+  };
+  const handleSubmint = async function fetchDataFromBackend() {
+    // const payload = {
+    //   companyName: "Lucky Soap",
+    //   companyEmail: "luckysoap@gmail.com",
+    //   companyPhone: "03113171471",
+    //   userFirstName: "Donald",
+    //   userLastName: "Lue",
+    //   password: "#lucky@12345",
+    //   status: "Active",
+    // };
 
     try {
       const response = await fetch("http://localhost:8007/api/Companies", {
@@ -42,19 +60,11 @@ export default function SingUp() {
       const data = await response.status;
       if (data == 200) {
         console.log("Account Created Suncesssfully");
+        Navigate("/SignIn");
       }
     } catch (err) {
       console.error("Error FROM SINGUP:", err);
     }
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
   };
 
   return (
@@ -198,19 +208,20 @@ export default function SingUp() {
                     />
                   </Grid>
                 </Grid>
-                <Button
+                {/* <Button
                   fullWidth
                   onClick={handleSubmint}
                   variant="contained"
                   sizing
                 >
                   START TRIssdsssssssssAL
-                </Button>
+                </Button> */}
 
                 {/* <Link to="/Users" style={{ textDecoration: "none" }}> */}
                 <Button
                   type="submit"
                   fullWidth
+                  onClick={handleSubmint}
                   variant="contained"
                   sx={{
                     mt: 3,

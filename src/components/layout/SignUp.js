@@ -238,7 +238,7 @@ export default function SingUp() {
                 {/* </Link> */}
                 <Grid container justifyContent="flex-end">
                   <Grid item>
-                    <Link to="/SingUp" variant="body2">
+                    <Link to="/SignIn" variant="body2">
                       <Typography color={"black"}>
                         Already have an account? Sign in
                       </Typography>

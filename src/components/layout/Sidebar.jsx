@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { categories } from "../../assets/constants";
 import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { isJwtExpired } from "jwt-check-expiration";
 import {
   Modal,
   Button,
@@ -96,6 +97,7 @@ const Sidebar = ({ children }) => {
       console.log("Error", error);
     }
   };
+
   useEffect(() => {
     let timeoutId;
 
@@ -106,7 +108,7 @@ const Sidebar = ({ children }) => {
         timeoutId = setTimeout(() => {
           ApiLogout();
           console.log("runned");
-        }, 300000);
+        }, 5 * 60 * 1000);
       }
     }
 
@@ -114,7 +116,8 @@ const Sidebar = ({ children }) => {
       // Clear the timeout when the component unmounts
       clearTimeout(timeoutId);
     };
-  }, []);
+  }, [isSignInOrSignOutPage]);
+
   return (
     <>
       <div className="container">

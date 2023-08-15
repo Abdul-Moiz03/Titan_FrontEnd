@@ -6,33 +6,21 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Button, Switch } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import AddProcedureModal from "./AddProcedureModal";
-const Switchbtn = (props) => {
-  const [checked, setChecked] = useState(true);
-
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-    console.log(props.id);
-  };
-  return (
-    <Switch
-      checked={checked}
-      onChange={handleChange}
-      inputProps={{ "aria-label": "controlled" }}
-    ></Switch>
-  );
-};
+import { AddButton } from "../../../assets/buttons/AddButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useEffect } from "react";
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
   {
-    field: "Name",
-    headerName: "Name",
+    field: "pName",
+    headerName: "pName",
     width: 180,
     type: "string",
     headerAlign: "center",
     align: "center",
   },
   {
-    field: "typeofmaintenance",
+    field: "tom",
     headerName: "Type of Maintenance",
     type: "number",
     width: 150,
@@ -40,40 +28,38 @@ const columns = [
     align: "center",
   },
   {
-    field: "AssetModel",
-    headerName: "Asset Model",
+    field: "assetName",
+    headerName: "Asset Name",
     type: "number",
     width: 180,
     headerAlign: "center",
     align: "center",
   },
-  {
-    field: "active",
-    headerName: "Active ",
-    // description: 'This column has a value getter and is not sortable.',
-    // sortable: false,
-
-    width: 100,
-    headerAlign: "center",
-    align: "center",
-
-    // valueGetter: (params) =>
-    //   `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-    renderCell: (params) => <Switchbtn id={params.row.id} />,
-  },
-  {
-    field: "actions",
-    headerName: "Actions",
-    headerAlign: "center",
-    align: "center",
-    width: 180,
-    renderCell: (params) => <Viewbtn id={params.row.id} />,
-  },
 ];
-const viewpurchaserequisition = (id) => {
-  console.log(id);
-};
-const Viewbtn = (props) => {
+const token = localStorage.getItem("token");
+async function deleteElement(pAutoId) {
+  try {
+    const response = await fetch(
+      `http://localhost:8007/api/Procedures/${pAutoId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (response.status === 204) {
+      console.log("Element deleted successfully.");
+    } else {
+      console.error(
+        `Failed to delete element. Status code: ${response.status}`
+      );
+    }
+  } catch (error) {
+    console.error("An error occurred:", error);
+  }
+}
+const Viewbtn = ({ row, onEditClick }) => {
   const [HoveredIcon, setHoveredIcon] = useState(null);
 
   const handleIconMouseEnter = (iconName) => {
@@ -83,88 +69,118 @@ const Viewbtn = (props) => {
   const handleIconMouseLeave = () => {
     setHoveredIcon(null);
   };
+
   return (
     <div className="icon-wrapper">
       <Button sx={{ color: "black" }}>
-        <VisibilityIcon
+        <EditIcon
+          style={{ color: HoveredIcon === "edit" ? "#FBB515" : "inherit" }}
+          onMouseEnter={() => handleIconMouseEnter("edit")}
+          onMouseLeave={handleIconMouseLeave}
+          onClick={() => {
+            onEditClick(row); // Call the parent component's onEditClick function and pass the row data
+          }}
+        />
+      </Button>
+      <Button sx={{ color: "black" }}>
+        <DeleteIcon
           style={{
             color: HoveredIcon === "visibility" ? "#FBB515" : "inherit",
           }}
           onMouseEnter={() => handleIconMouseEnter("visibility")}
           onMouseLeave={handleIconMouseLeave}
           onClick={() => {
-            viewpurchaserequisition(props.id);
+            deleteElement(row.pAutoId);
           }}
-        />
-      </Button>
-      <Button sx={{ color: "black" }}>
-        <EditIcon
-          style={{ color: HoveredIcon === "edit" ? "#FBB515" : "inherit" }}
-          onMouseEnter={() => handleIconMouseEnter("edit")}
-          onMouseLeave={handleIconMouseLeave}
         />
       </Button>
     </div>
   );
 };
 
-const rows = [
-  {
-    id: 1,
-    Name: "Snow",
-    typeofmaintenance: 35,
-    AssetModel: 35,
+export default function WorkProcedure() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [rowss, setRowss] = useState([]);
 
-    active: false,
-  },
-  {
-    id: 2,
-    Name: "Lannister",
-    typeofmaintenance: "Cersei",
-    AssetModel: 42,
+  const [rowDataForEdit, setRowDataForEdit] = useState(null);
 
-    active: false,
-  },
-  {
-    id: 3,
-    Name: "Lannister",
-    typeofmaintenance: "Jaime",
-    AssetModel: 45,
-  },
-  {
-    id: 4,
-    Name: "Stark",
-    typeofmaintenance: "Arya",
-    AssetModel: 16,
-  },
-  {
-    id: 5,
-    Name: "Targaryen",
-    typeofmaintenance: "Daenerys",
-    AssetModel: null,
-  },
-  {
-    id: 6,
-    Name: "Melisandre",
-    typeofmaintenance: null,
-    AssetModel: 150,
-  },
-  {
-    id: 7,
-    Name: "Clifford",
-    typeofmaintenance: "Ferrara",
-    AssetModel: 44,
-  },
-];
+  const GettingData = async () => {
+    const token = localStorage.getItem("token");
 
-const WorkProcedure = () => {
+    try {
+      const response = await fetch("http://localhost:8007/api/Procedures", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      const arr = [];
+      setRowss(arr);
+      for (let i = 0; i < data.length; i++) {
+        const obj = { ...data[i], id: i + 1 };
+        arr.push(obj);
+      }
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
+  useEffect(() => {
+    GettingData();
+  }, [rowss]);
+
+  const handleOpenCreateModal = () => {
+    setIsModalOpen(true); // Open the modal for create
+    setRowDataForEdit(null); // Reset the rowDataForEdit for create
+  };
+
+  const handleOpenEditModal = (rowData) => {
+    setIsModalOpen(true); // Open the modal for edit
+    setRowDataForEdit(rowData); // Set the rowDataForEdit for editing
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // Close the modal
+  };
+
   return (
     <>
+      <AddButton onClickHandle={handleOpenCreateModal} caption="Procedure" />
       <Box sx={{ px: 2, height: 600, width: "auto" }}>
-        <AddProcedureModal />
+        {isModalOpen && !rowDataForEdit && (
+          <AddProcedureModal
+            isEdit={false}
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+          />
+        )}
+        {isModalOpen && rowDataForEdit && (
+          <AddProcedureModal
+            isEdit={true}
+            rowData={rowDataForEdit}
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+          />
+        )}
         <DataGrid
-          rows={rows}
-          columns={columns}
+          rows={rowss}
+          columns={[
+            ...columns,
+            {
+              field: "actions",
+              headerName: "Actions",
+              headerAlign: "center",
+              align: "center",
+              width: 180,
+              renderCell: (params) => (
+                <Viewbtn
+                  row={params.row}
+                  onEditClick={handleOpenEditModal} // Pass the parent component's function as a prop
+                />
+              ),
+            },
+          ]}
           initialState={{
             pagination: {
               paginationModel: {
@@ -179,6 +195,4 @@ const WorkProcedure = () => {
       </Box>
     </>
   );
-};
-
-export default WorkProcedure;
+}

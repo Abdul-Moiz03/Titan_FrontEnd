@@ -7,36 +7,38 @@ import { Button } from "@mui/material";
 // import CreateIssuanceRequisitionModal from "./CreateIssuanceRequisitionModal";
 import EditIcon from "@mui/icons-material/Edit";
 import Schedule_Work_Order from "./Schedule_Work_Order";
-
+import { useEffect } from "react";
+import { AddButton } from "../../../assets/buttons/AddButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
   {
-    field: "assetmodel",
-    headerName: "Asset Model",
+    field: "assetId",
+    headerName: "Asset Id",
     width: 180,
     type: "string",
     headerAlign: "center",
     align: "center",
   },
   {
-    field: "assetname",
-    headerName: "Asset Name",
+    field: "headOfProblem",
+    headerName: "Head Of Problem",
     type: "number",
     width: 150,
     headerAlign: "center",
     align: "center",
   },
   {
-    field: "scheduledworkorder",
-    headerName: "Scheduled Work Order",
-    type: "number",
-    width: 180,
+    field: "description",
+    headerName: "Description",
+    type: "string",
+    width: 150,
     headerAlign: "center",
     align: "center",
   },
   {
-    field: "inspections",
-    headerName: "Inspections",
+    field: "frequencyDays",
+    headerName: "Frequency Days",
     // description: 'This column has a value getter and is not sortable.',
     // sortable: false,
 
@@ -48,26 +50,38 @@ const columns = [
     //   `${params.row.firstName || ''} ${params.row.lastName || ''}`,
   },
   {
-    field: "meterreadings",
-    headerName: "Meter Readings",
+    field: "initialDateTime",
+    headerName: "Initial Date Time",
     type: "number",
-    width: 150,
-    headerAlign: "center",
-    align: "center",
-  },
-  {
-    field: "actions",
-    headerName: "Actions",
-    headerAlign: "center",
-    align: "center",
     width: 180,
-    renderCell: (params) => <Viewbtn id={params.row.id} />,
+    headerAlign: "center",
+    align: "center",
   },
 ];
-const viewpurchaserequisition = (id) => {
-  console.log(id);
-};
-const Viewbtn = (props) => {
+const token = localStorage.getItem("token");
+async function deleteElement(swrAutoId) {
+  try {
+    const response = await fetch(
+      `http://localhost:8007/api/ScheduledWorkRequests/${swrAutoId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (response.status === 204) {
+      console.log("Element deleted successfully.");
+    } else {
+      console.error(
+        `Failed to delete element. Status code: ${response.status}`
+      );
+    }
+  } catch (error) {
+    console.error("An error occurred:", error);
+  }
+}
+const Viewbtn = ({ row, onEditClick }) => {
   const [HoveredIcon, setHoveredIcon] = useState(null);
 
   const handleIconMouseEnter = (iconName) => {
@@ -77,99 +91,121 @@ const Viewbtn = (props) => {
   const handleIconMouseLeave = () => {
     setHoveredIcon(null);
   };
+
   return (
     <div className="icon-wrapper">
       <Button sx={{ color: "black" }}>
-        <VisibilityIcon
+        <EditIcon
+          style={{ color: HoveredIcon === "edit" ? "#FBB515" : "inherit" }}
+          onMouseEnter={() => handleIconMouseEnter("edit")}
+          onMouseLeave={handleIconMouseLeave}
+          onClick={() => {
+            onEditClick(row); // Call the parent component's onEditClick function and pass the row data
+          }}
+        />
+      </Button>
+      <Button sx={{ color: "black" }}>
+        <DeleteIcon
           style={{
             color: HoveredIcon === "visibility" ? "#FBB515" : "inherit",
           }}
           onMouseEnter={() => handleIconMouseEnter("visibility")}
           onMouseLeave={handleIconMouseLeave}
           onClick={() => {
-            viewpurchaserequisition(props.id);
+            deleteElement(row.swrAutoId);
           }}
-        />
-      </Button>
-      <Button sx={{ color: "black" }}>
-        <EditIcon
-          style={{ color: HoveredIcon === "edit" ? "#FBB515" : "inherit" }}
-          onMouseEnter={() => handleIconMouseEnter("edit")}
-          onMouseLeave={handleIconMouseLeave}
         />
       </Button>
     </div>
   );
 };
 
-const rows = [
-  {
-    id: 1,
-    assetmodel: "Snow",
-    assetname: 35,
-    scheduledworkorder: 35,
-    inspections: 35,
-    meterreadings: 50,
-  },
-  {
-    id: 2,
-    assetmodel: "Lannister",
-    assetname: "Cersei",
-    scheduledworkorder: 42,
-    inspections: 35,
-    meterreadings: 60,
-  },
-  {
-    id: 3,
-    assetmodel: "Lannister",
-    assetname: "Jaime",
-    scheduledworkorder: 45,
-    inspections: 35,
-    meterreadings: 70,
-  },
-  {
-    id: 4,
-    assetmodel: "Stark",
-    assetname: "Arya",
-    scheduledworkorder: 16,
-    inspections: 35,
-    meterreadings: 80,
-  },
-  {
-    id: 5,
-    assetmodel: "Targaryen",
-    assetname: "Daenerys",
-    scheduledworkorder: null,
-    inspections: 35,
-    meterreadings: 90,
-  },
-  {
-    id: 6,
-    assetmodel: "Melisandre",
-    assetname: null,
-    scheduledworkorder: 150,
-    inspections: 35,
-    meterreadings: 100,
-  },
-  {
-    id: 7,
-    assetmodel: "Clifford",
-    assetname: "Ferrara",
-    scheduledworkorder: 44,
-    inspections: 35,
-    meterreadings: 110,
-  },
-];
-
 export default function Maintenance_Model() {
+  const [rowss, setRowss] = useState([]);
+  const [rowDataForEdit, setRowDataForEdit] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const GettingData = async () => {
+    const token = localStorage.getItem("token");
+
+    try {
+      const response = await fetch(
+        "http://localhost:8007/api/ScheduledWorkRequests",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = await response.json();
+      const arr = [];
+
+      setRowss(arr);
+      for (let i = 0; i < data.length; i++) {
+        const obj = { ...data[i], id: i + 1 };
+        arr.push(obj);
+      }
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+  useEffect(() => {
+    GettingData();
+  }, [rowss]);
+
+  const handleOpenCreateModal = () => {
+    setIsModalOpen(true); // Open the modal for create
+    setRowDataForEdit(null); // Reset the rowDataForEdit for create
+  };
+
+  const handleOpenEditModal = (rowData) => {
+    setIsModalOpen(true); // Open the modal for edit
+    setRowDataForEdit(rowData); // Set the rowDataForEdit for editing
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // Close the modal
+  };
   return (
     <>
+      <AddButton
+        onClickHandle={handleOpenCreateModal}
+        caption="Schedule Work Order"
+      />
       <Box sx={{ px: 2, height: 600, width: "auto" }}>
-        {/* <CreateIssuanceRequisitionModal /> */}
-        <Schedule_Work_Order />
+        {isModalOpen && !rowDataForEdit && (
+          <Schedule_Work_Order
+            isEdit={false}
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+          />
+        )}
+        {isModalOpen && rowDataForEdit && (
+          <Schedule_Work_Order
+            isEdit={true}
+            rowData={rowDataForEdit}
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+          />
+        )}
         <DataGrid
-          rows={rows}
-          columns={columns}
+          rows={rowss}
+          columns={[
+            ...columns,
+            {
+              field: "actions",
+              headerName: "Actions",
+              headerAlign: "center",
+              align: "center",
+              width: 180,
+              renderCell: (params) => (
+                <Viewbtn
+                  row={params.row}
+                  onEditClick={handleOpenEditModal} // Pass the parent component's function as a prop
+                />
+              ),
+            },
+          ]}
           initialState={{
             pagination: {
               paginationModel: {
